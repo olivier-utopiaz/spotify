@@ -44,6 +44,18 @@ Un peu de soleil pour nos oreilles ☀️
 🎶 Genre : #{album_info['genre'].capitalize()}
 
 🎧 Écouter : {album_info['url']}"""
+            
+        # Vérification de la longueur du message
+        if len(message) > 500:
+            # Version courte du message si dépassement
+            message = f"""🎵 Découverte musicale du jour:
+👨‍🎤 {album_info['artist']}
+💿 {album_info['name']}
+🎶 #{album_info['genre'].capitalize()}
+
+🎧 {album_info['url']}"""
+            
+        logger.info(f"Longueur du message : {len(message)} caractères")
 
             # Étape 1 : Créer un conteneur de post
             create_endpoint = f"{self.api_url}/{self.user_id}/threads"
