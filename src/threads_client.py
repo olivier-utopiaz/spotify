@@ -1,4 +1,6 @@
 import requests
+import random
+from datetime import datetime
 from config import (
     META_ACCESS_TOKEN,
     INSTAGRAM_USER_ID,
@@ -6,8 +8,7 @@ from config import (
     MORNING_MESSAGES,
     logger
 )
-import random
-from datetime import datetime
+
 
 class ThreadsClient:
     def __init__(self):
@@ -17,12 +18,17 @@ class ThreadsClient:
         logger.info("Threads client initialized")
 
     def create_post(self, album_info):
-        """Crée et publie un post sur Threads"""
+        """Crée et publie un post sur Threads."""
         try:
             # Jour de la semaine en français
             days = {
-                0: 'lundi', 1: 'mardi', 2: 'mercredi', 3: 'jeudi',
-                4: 'vendredi', 5: 'samedi', 6: 'dimanche'
+                0: 'lundi',
+                1: 'mardi',
+                2: 'mercredi',
+                3: 'jeudi',
+                4: 'vendredi',
+                5: 'samedi',
+                6: 'dimanche'
             }
             current_day = days[datetime.now().weekday()]
 
@@ -45,17 +51,17 @@ Un peu de soleil pour nos oreilles ☀️
 
 🎧 Écouter : {album_info['url']}"""
             
-        # Vérification de la longueur du message
-        if len(message) > 500:
-            # Version courte du message si dépassement
-            message = f"""🎵 Découverte musicale du jour:
+            # Vérification de la longueur du message
+            if len(message) > 500:
+                # Version courte du message si dépassement
+                message = f"""🎵 Découverte musicale du jour:
 👨‍🎤 {album_info['artist']}
 💿 {album_info['name']}
 🎶 #{album_info['genre'].capitalize()}
 
 🎧 {album_info['url']}"""
             
-        logger.info(f"Longueur du message : {len(message)} caractères")
+            logger.info(f"Longueur du message : {len(message)} caractères")
 
             # Étape 1 : Créer un conteneur de post
             create_endpoint = f"{self.api_url}/{self.user_id}/threads"
@@ -82,9 +88,9 @@ Un peu de soleil pour nos oreilles ☀️
             # Étape 2 : Publier le conteneur
             publish_endpoint = f"{self.api_url}/{self.user_id}/threads_publish"
             data_publish = {
-                    'creation_id': creation_id,
-                    'access_token': self.access_token
-                }
+                'creation_id': creation_id,
+                'access_token': self.access_token
+            }
 
             response = requests.post(publish_endpoint, json=data_publish, headers=headers)
 
