@@ -35,7 +35,7 @@ Pour vérifier l'installation :
 python3 --version
 ```
 
-### Création de l'environnement virtuel
+### Création de l'environnement virtuel (dans votre dossier de travail)
 Une fois Python installé, créez un environnement virtuel :
 
 ```bash
