@@ -1,0 +1,18 @@
+[Unit]
+Description=Bot Spotify
+After=network.target
+
+[Service]
+User=tonuser
+WorkingDirectory=/home/tonuser/spotify
+ExecStart=/bin/bash -c 'source venv/bin/activate && python src/scheduler.py'
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/tonuser/spotify/bot.log
+StandardError=append:/home/tonuser/spotify/bot.err
+
+MemoryLimit=500M
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
