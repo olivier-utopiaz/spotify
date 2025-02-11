@@ -34,12 +34,15 @@ GREETINGS = [
     "Bonjour @threads 👋",
     "Hello la communauté @threads 👋",
     "Salut tout le monde 👋",
+    "Hello evertone 👋",
+    "Hi there 👋",
 ]
 
 MORNING_MESSAGES = [
     "Comment ça va en ce {} matin ?",
     "Bien réveillé en ce {} ?",
     "Prêt pour cette belle journée de {} ?",
+    "How are you this beautiful morning?"
 ]
 
 # Posting time configuration

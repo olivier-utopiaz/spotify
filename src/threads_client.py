@@ -42,6 +42,7 @@ Bien réveillé ce matin 🙂‍↔️
 
 Un p'tit café ☕️ ou un thé 🍵 et c'est parti pour s'écouter du bon son 🔊
 Ce matin, ça sera ambiance {album_info['genre']} 🔊 🤩
+Post by my Bot :-)
 
 👨‍🎤 Artiste : {album_info['artist']}
 💿 Album : {album_info['name']}
