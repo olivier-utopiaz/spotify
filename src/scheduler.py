@@ -2,10 +2,16 @@ import schedule
 import time
 from datetime import datetime
 import pytz
+import os
 from config import TIMEZONE, logger
 from spotify_client import SpotifyClient
 from threads_client import ThreadsClient
 import argparse
+from dotenv import load_dotenv
+
+load_dotenv()  # Charger les variables d'environnement depuis .env
+
+POSTING_TIME = os.getenv('POSTING_TIME')
 
 class PostScheduler:
     def __init__(self):

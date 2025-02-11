@@ -38,12 +38,11 @@ class ThreadsClient:
             
             message = f"""{greeting}
 {morning_msg}
-Pas trop ronchon en ce début de matinée 🙂‍↔️
+Bien réveillé ce matin 🙂‍↔️
 
-Non. Bon cool, un p'tit café ☕️ ou un thé 🍵 et c'est parti pour s'écouter du bon son 🔊
+Un p'tit café ☕️ ou un thé 🍵 et c'est parti pour s'écouter du bon son 🔊
 Ce matin, ça sera ambiance {album_info['genre']} 🔊 🤩
 
-Un peu de soleil pour nos oreilles ☀️
 👨‍🎤 Artiste : {album_info['artist']}
 💿 Album : {album_info['name']}
 📆 Année : {album_info['release_date']}
