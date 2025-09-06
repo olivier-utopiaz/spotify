@@ -136,6 +136,18 @@ sudo journalctl -u spotify-bot.service -f
 
 4. **Erreur Threads API** : Vérifiez que votre token est valide et que vous avez les bonnes permissions
 
+### Token expiré (Error 401)
+Si vous obtenez une erreur 401 avec "Session has expired" :
+```bash
+# Utiliser le script de diagnostic/renouvellement
+python3 refresh_token.py
+
+# Ou vérifier manuellement
+python3 diagnose_threads.py
+```
+
+⚠️ **Important** : Les tokens Meta expirent régulièrement (60 jours max). Vous devrez les renouveler périodiquement.
+
 ### Structure des fichiers sur le serveur
 ```
 spotify/
