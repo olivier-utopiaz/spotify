@@ -1,9 +1,8 @@
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials
 from .config import (
     SPOTIFY_CLIENT_ID,
     SPOTIFY_CLIENT_SECRET,
-    SPOTIFY_REDIRECT_URI,
     MUSIC_GENRES,
     logger
 )
@@ -11,13 +10,12 @@ import random
 
 class SpotifyClient:
     def __init__(self):
-        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        # Utiliser Client Credentials Flow pour éviter les problèmes de serveur local
+        self.sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
             client_id=SPOTIFY_CLIENT_ID,
-            client_secret=SPOTIFY_CLIENT_SECRET,
-            redirect_uri=SPOTIFY_REDIRECT_URI,
-            scope="user-library-read playlist-read-private"
+            client_secret=SPOTIFY_CLIENT_SECRET
         ))
-        logger.info("Spotify client initialized")
+        logger.info("Spotify client initialized with Client Credentials")
 
     def get_random_album_by_genre(self, genre):
         """Récupère un album aléatoire pour un genre donné"""
