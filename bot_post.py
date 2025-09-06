@@ -1,6 +1,6 @@
-from spotify_client import SpotifyClient
-from threads_client import ThreadsClient
-from config import logger
+from src.spotify_client import SpotifyClient
+from src.threads_client import ThreadsClient
+from src.config import logger
 
 def test_bot():
     try:

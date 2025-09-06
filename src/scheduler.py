@@ -3,9 +3,9 @@ import time
 from datetime import datetime
 import pytz
 import os
-from config import TIMEZONE, logger
-from spotify_client import SpotifyClient
-from threads_client import ThreadsClient
+from .config import TIMEZONE, logger
+from .spotify_client import SpotifyClient
+from .threads_client import ThreadsClient
 import argparse
 from dotenv import load_dotenv
 

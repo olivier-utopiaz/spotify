@@ -1,5 +1,5 @@
-from scheduler import PostScheduler
-from config import logger
+from .scheduler import PostScheduler
+from .config import logger
 
 def main():
     try:
