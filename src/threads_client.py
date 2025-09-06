@@ -1,7 +1,7 @@
 import requests
 import random
 from datetime import datetime
-from config import (
+from .config import (
     META_ACCESS_TOKEN,
     INSTAGRAM_USER_ID,
     GREETINGS,
