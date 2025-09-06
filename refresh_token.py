@@ -46,14 +46,15 @@ def check_current_token():
 def get_token_info():
     """Obtient des informations sur le token"""
     access_token = os.getenv('META_ACCESS_TOKEN')
+    user_id = os.getenv('INSTAGRAM_USER_ID')
     
-    if not access_token:
+    if not access_token or not user_id:
         return
     
-    # Vérifier les informations du token
-    url = "https://graph.facebook.com/v22.0/me"
+    # Vérifier les informations du token via Threads API
+    url = f"https://graph.threads.net/v1.0/{user_id}"
     params = {
-        'fields': 'id,name',
+        'fields': 'id,username,name',
         'access_token': access_token
     }
     
@@ -61,7 +62,7 @@ def get_token_info():
         response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
-            print(f"📋 Token appartient à: {data.get('name', 'N/A')}")
+            print(f"📋 Token appartient à: {data.get('username', data.get('name', 'N/A'))}")
         else:
             print(f"⚠️ Impossible d'obtenir les infos du token")
     except:
@@ -80,6 +81,7 @@ def exchange_for_long_lived_token():
     
     print("🔄 Tentative d'échange pour un token long...")
     
+    # L'échange de token se fait via Facebook Graph API v22.0
     url = "https://graph.facebook.com/v22.0/oauth/access_token"
     params = {
         'grant_type': 'fb_exchange_token',
