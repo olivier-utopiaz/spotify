@@ -1,5 +1,6 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from typing import Optional, Dict, Any
 from .config import (
     SPOTIFY_CLIENT_ID,
     SPOTIFY_CLIENT_SECRET,
@@ -9,7 +10,7 @@ from .config import (
 import random
 
 class SpotifyClient:
-    def __init__(self):
+    def __init__(self) -> None:
         # Utiliser Client Credentials Flow pour éviter les problèmes de serveur local
         self.sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
             client_id=SPOTIFY_CLIENT_ID,
@@ -17,7 +18,7 @@ class SpotifyClient:
         ))
         logger.info("Spotify client initialized with Client Credentials")
 
-    def get_random_album_by_genre(self, genre):
+    def get_random_album_by_genre(self, genre: str) -> Optional[Dict[str, Any]]:
         """Récupère un album aléatoire pour un genre donné"""
         try:
             # Recherche d'albums pour le genre
@@ -44,6 +45,6 @@ class SpotifyClient:
             logger.error(f"Error getting album for genre {genre}: {str(e)}")
             return None
 
-    def get_random_genre(self):
+    def get_random_genre(self) -> str:
         """Retourne un genre aléatoire depuis la liste des genres configurés"""
         return random.choice(list(MUSIC_GENRES.keys()))

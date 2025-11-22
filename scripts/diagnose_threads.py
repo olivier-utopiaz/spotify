@@ -4,8 +4,13 @@ Script de diagnostic pour l'API Threads
 Vérifie la configuration et teste les endpoints API
 """
 import os
+import sys
 import requests
 import json
+
+# Ajouter le dossier racine au PYTHONPATH pour permettre les imports depuis src
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.config import META_ACCESS_TOKEN, INSTAGRAM_USER_ID, logger
 
 def test_threads_api():

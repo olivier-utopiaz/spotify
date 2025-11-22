@@ -1,18 +1,22 @@
 [Unit]
-Description=Bot Spotify
+Description=Spotify Threads Bot
 After=network.target
 
 [Service]
-User=tonuser
-WorkingDirectory=/home/tonuser/spotify
-ExecStart=/bin/bash -c 'source venv/bin/activate && python src/scheduler.py'
+Type=simple
+User=votre_utilisateur
+WorkingDirectory=/home/votre_utilisateur/spotify
+# Utilisation directe de l'interpréteur Python du venv
+ExecStart=/home/votre_utilisateur/spotify/venv/bin/python run_bot.py
 Restart=always
-RestartSec=5
-StandardOutput=append:/home/tonuser/spotify/bot.log
-StandardError=append:/home/tonuser/spotify/bot.err
-
-MemoryLimit=500M
 RestartSec=10
+
+# Logs
+StandardOutput=append:/home/votre_utilisateur/spotify/logs/service.log
+StandardError=append:/home/votre_utilisateur/spotify/logs/service.err
+
+# Limites ressources
+MemoryLimit=500M
 
 [Install]
 WantedBy=multi-user.target

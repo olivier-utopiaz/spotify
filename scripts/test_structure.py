@@ -4,8 +4,9 @@ Script de test pour vérifier la structure du bot sans les vraies clés API
 import sys
 import os
 
-# Ajouter le dossier src au path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+# Définir la racine du projet
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(project_root)
 
 # Simuler les variables d'environnement pour le test
 os.environ.setdefault('SPOTIFY_CLIENT_ID', 'test_id')
@@ -22,22 +23,22 @@ def test_imports():
         print("🔍 Test des imports...")
         
         # Test config
-        from config import logger, SPOTIFY_CLIENT_ID
+        from src.config import logger, SPOTIFY_CLIENT_ID
         print("✅ Config importé avec succès")
         
         # Test spotify_client (sans vraie connexion)
         print("🎵 Test Spotify client...")
-        from spotify_client import SpotifyClient
+        from src.spotify_client import SpotifyClient
         print("✅ SpotifyClient importé avec succès")
         
         # Test threads_client
         print("💬 Test Threads client...")
-        from threads_client import ThreadsClient
+        from src.threads_client import ThreadsClient
         print("✅ ThreadsClient importé avec succès")
         
         # Test scheduler
         print("⏰ Test Scheduler...")
-        from scheduler import PostScheduler
+        from src.scheduler import PostScheduler
         print("✅ PostScheduler importé avec succès")
         
         print("\n🎉 Tous les imports fonctionnent !")
@@ -64,18 +65,18 @@ def test_structure():
         ]
         
         for file in required_files:
-            if os.path.exists(file):
+            if os.path.exists(os.path.join(project_root, file)):
                 print(f"✅ {file}")
             else:
                 print(f"❌ {file} manquant")
                 return False
         
         # Vérifier le dossier logs
-        if os.path.exists('logs'):
+        if os.path.exists(os.path.join(project_root, 'logs')):
             print("✅ Dossier logs présent")
         else:
             print("❌ Dossier logs manquant")
-            os.makedirs('logs', exist_ok=True)
+            os.makedirs(os.path.join(project_root, 'logs'), exist_ok=True)
             print("✅ Dossier logs créé")
         
         return True
@@ -95,7 +96,7 @@ if __name__ == "__main__":
         print("💡 Pour utiliser l'application sur le serveur :")
         print("   1. Assurez-vous que toutes les dépendances sont installées")
         print("   2. Créez le fichier .env avec vos vraies clés API")
-        print("   3. Utilisez: python3 -m src.main pour lancer l'application")
+        print("   3. Utilisez: python3 run_bot.py pour lancer l'application")
     else:
         print("\n❌ Des problèmes ont été détectés")
         sys.exit(1)
